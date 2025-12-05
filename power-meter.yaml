@@ -1,0 +1,82 @@
+substitutions:
+  # Der interne Name, der von ESPHome verwendet wird (klein, ohne Leerzeichen, Bindestriche OK)
+  devicename: "stromzaehler"
+
+  # Der Anzeigename in Home Assistant (ohne Umlaute für MQTT-Kompatibilität)
+  friendly_name: "Stromzaehler"
+
+  # Beschreibung, was dieses Gerät macht
+  device_comment: "SML-Stromzaehler Ausleser"
+
+# Remote extensions (API encryption, OTA, MQTT, Web Server, Captive Portal)
+packages:
+  common:
+    url: https://github.com/legacycode/ESPHome-Config.git
+    file: common.yaml
+    ref: main
+    refresh: 1d
+
+# Board-Konfiguration (Wemos D1 Mini)
+esp8266:
+  board: d1_mini
+
+uart:
+  id: sml_uart
+  tx_pin: GPIO1
+  rx_pin: GPIO3
+  baud_rate: 9600
+  data_bits: 8
+  parity: NONE
+  stop_bits: 1
+
+sml:
+  id: sml0
+  uart_id: sml_uart
+
+# SML-Sensoren
+sensor:
+  # OBIS 1-0:1.8.0 = Bezug gesamt (Tarif 1+2), Einheit: 0.1 Wh
+  - platform: sml
+    sml_id: sml0
+    name: "${friendly_name} Bezug"
+    icon: "mdi:transmission-tower-import"
+    obis_code: "1-0:1.8.0"
+    unit_of_measurement: kWh
+    accuracy_decimals: 4
+    device_class: energy
+    state_class: total_increasing
+    filters:
+      - multiply: 0.0001  # 0.1 Wh → kWh
+
+  # OBIS 1-0:2.8.0 = Einspeisung gesamt (Tarif 1+2), Einheit: 0.1 Wh
+  - platform: sml
+    sml_id: sml0
+    name: "${friendly_name} Einspeisung"
+    icon: "mdi:transmission-tower-export"
+    obis_code: "1-0:2.8.0"
+    unit_of_measurement: kWh
+    accuracy_decimals: 4
+    device_class: energy
+    state_class: total_increasing
+    filters:
+      - multiply: 0.0001  # 0.1 Wh → kWh
+
+  # OBIS 1-0:16.7.0 = Aktuelle Wirkleistung (Summe aller Phasen)
+  - platform: sml
+    sml_id: sml0
+    name: "${friendly_name} Aktuelle Wirkleistung"
+    icon: "mdi:flash"
+    obis_code: "1-0:16.7.0"
+    unit_of_measurement: W
+    accuracy_decimals: 2
+    device_class: power
+    state_class: measurement
+
+# Stromzähler-ID
+text_sensor:
+  # OBIS 1-0:96.1.0 = Geräte-Identifikationsnummer
+  - platform: sml
+    sml_id: sml0
+    name: "${friendly_name} ID"
+    obis_code: "1-0:96.1.0"
+    format: hex

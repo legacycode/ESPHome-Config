@@ -1,0 +1,16 @@
+# ESPHome secrets - niemals committen!
+secrets.yaml
+
+# ESPHome Build-Dateien und Cache
+.esphome/
+
+# Editor und IDE Dateien
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup-Dateien
+*.bak
+*.backup
