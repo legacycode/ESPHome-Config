@@ -44,6 +44,9 @@ sensor:
     panel_voltage:
       name: "${friendly_name} Panel Spannung"
       icon: "mdi:solar-panel"
+    panel_power:
+      name: "${friendly_name} Panel Leistung"
+      icon: "mdi:solar-power"
     battery_voltage:
       name: "${friendly_name} Batterie Spannung"
       icon: "mdi:battery-charging"
@@ -59,3 +62,17 @@ sensor:
       state_class: total_increasing
       filters:
         - multiply: 0.001  # Wh → kWh
+
+# Victron Text-Sensoren
+text_sensor:
+  - platform: victron
+    victron_id: victron0
+    charging_mode:
+      name: "${friendly_name} Lademodus"
+      icon: "mdi:battery-charging-100"
+    error:
+      name: "${friendly_name} Fehler"
+      icon: "mdi:alert-circle"
+    firmware_version:
+      name: "${friendly_name} Firmware Version"
+      icon: "mdi:chip"
