@@ -12,6 +12,8 @@ Dieses Repository enthält ESPHome-Konfigurationsdateien für verschiedene Smart
 ├── secrets.yaml.example     # Vorlage für Secrets (wird ins Repository committed)
 ├── secrets.yaml             # Echte Secrets (wird NICHT committed, siehe .gitignore)
 ├── power-meter.yaml         # Stromzähler-Konfiguration (SML)
+├── smartsolar.yaml          # Victron SmartSolar MPPT Laderegler
+├── smartshunt.yaml          # Victron SmartShunt Batteriemonitor
 └── .gitignore              # Schützt secrets.yaml vor versehentlichem Commit
 ```
 
@@ -104,6 +106,54 @@ SML-Stromzähler Ausleser auf Wemos D1 Mini:
   - Einspeisung gesamt (OBIS 1-0:2.8.0)
   - Aktuelle Wirkleistung (OBIS 1-0:16.7.0)
   - Stromzähler-ID (OBIS 1-0:96.1.0)
+
+### smartsolar.yaml
+
+Victron SmartSolar MPPT Laderegler auf Wemos D1 Mini:
+
+- **Board:** ESP8266 (d1_mini)
+- **UART:** RX=D7 (GPIO13), TX=D6 (GPIO12), 19200 Baud
+- **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
+- **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartsolar-mppt-esp8266-example.yaml
+- **Sensoren (14):**
+  - Panel Spannung/Leistung
+  - Batterie Spannung/Strom
+  - Ertrag (Gesamt, Heute, Gestern) in kWh
+  - Max Leistung (Heute, Gestern)
+  - Tag Nummer, Lademodus ID, Fehlercode, Tracking Modus ID
+  - Last Strom
+- **Text-Sensoren (6):**
+  - Lademodus, Tracking Modus, Fehler
+  - Firmware Version, Gerätetyp, Seriennummer
+- **Binary-Sensoren (2):**
+  - Last Status, Relais Status
+
+### smartshunt.yaml
+
+Victron SmartShunt Batteriemonitor auf Wemos D1 Mini:
+
+- **Board:** ESP8266 (d1_mini)
+- **UART:** RX=D7 (GPIO13), TX=D6 (GPIO12), 19200 Baud
+- **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
+- **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartshunt-esp8266-example.yaml
+- **Sensoren (29):**
+  - Batterie Spannung/Strom/Temperatur/Ladezustand
+  - Hilfsbatterie Spannung (Min/Max)
+  - Batteriebank Mittelspannung/Abweichung
+  - Momentanleistung, Verbrauchte Ah, Restlaufzeit
+  - Entladungstiefen (Tiefste, Letzte, Durchschnittlich)
+  - Ladezyklen, Vollentladungen
+  - Energie geladen/entladen in kWh
+  - Alarm-Zähler (Über-/Unterspannung)
+- **Text-Sensoren (7):**
+  - Alarm Bedingung/Grund
+  - Modellbeschreibung, Firmware Version, Gerätetyp, Seriennummer
+  - DC Monitor Modus
+- **Binary-Sensoren (1):**
+  - Relais Status
+- **Energy Dashboard:**
+  - `amount_of_charged_energy` → Energie IN die Batterie (kWh)
+  - `amount_of_discharged_energy` → Energie AUS der Batterie (kWh)
 
 ## Hinweise für Claude
 
