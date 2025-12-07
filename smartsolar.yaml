@@ -50,3 +50,12 @@ sensor:
     battery_current:
       name: "${friendly_name} Batterie Strom"
       icon: "mdi:current-dc"
+    yield_total:
+      name: "${friendly_name} Ertrag Gesamt"
+      icon: "mdi:counter"
+      unit_of_measurement: "kWh"
+      accuracy_decimals: 2
+      device_class: energy
+      state_class: total_increasing
+      filters:
+        - multiply: 0.001  # Wh → kWh
