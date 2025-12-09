@@ -1,0 +1,41 @@
+# ============================================================================
+# Gaszaehler - Wemos D1 Mini (ESP8266) - Remote Packages
+# ============================================================================
+# Diese Konfiguration lädt alle Packages von GitHub statt lokaler Dateien
+# Ideal für die Nutzung ohne Repository zu klonen
+
+# ============================================================================
+# Substitutions - Konfigurationsvariablen
+# ============================================================================
+substitutions:
+  # Geräte-Identität
+  devicename: "gaszaehler"
+  friendly_name: "Gaszaehler"
+  device_comment: "Gaszaehler-Ausleser mit Reed-Kontakt"
+
+  # Gaszaehler-Konfiguration
+  pulses_per_cubic_meter: "100"
+  initial_meter_offset: "0"
+
+# ============================================================================
+# Remote Packages - Von GitHub geladen
+# ============================================================================
+packages:
+  # Remote Extensions (API-Verschlüsselung, OTA, MQTT, Web Server, Captive Portal)
+  common:
+    url: https://github.com/legacycode/ESPHome-Config.git
+    file: common.yaml
+    ref: main
+    refresh: 1d
+
+  # Gaszaehler Package (enthält common, board, gas-meter, localization)
+  gas_meter:
+    url: https://github.com/legacycode/ESPHome-Gas-Meter
+    files: [
+      esphome/common/packages.yaml,
+      esphome/common/boards/esp8266-d1-mini.yaml,
+      esphome/gas-meter/packages.yaml,
+      esphome/localization/de.yaml
+      ]
+    ref: main
+    refresh: 1d
