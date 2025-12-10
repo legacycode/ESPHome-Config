@@ -94,7 +94,22 @@ Die `common.yaml` enthält:
 - MQTT-Integration
 - Web-Server (Port 80)
 - Captive Portal (Fallback)
-- Restart-Button
+- Restart-Button (diagnostic)
+
+### Diagnostic-Sensoren (automatisch für alle Geräte)
+
+**Sensoren:**
+- WiFi Signal Stärke (dBm, update_interval: 60s)
+- Betriebszeit (Sekunden, update_interval: 60s)
+
+**Text-Sensoren:**
+- WiFi SSID, BSSID, IP Adresse, MAC Adresse
+- ESPHome Version
+
+**Binary-Sensoren:**
+- Status (Verbindungsstatus)
+
+**Wichtig:** Nach Hinzufügen neuer Sensoren zur `common.yaml` müssen Geräte in Home Assistant möglicherweise gelöscht und neu hinzugefügt werden, damit die Discovery korrekt funktioniert. Die Sensoren erscheinen dann in der Diagnostic-Sektion.
 
 ## Geräte
 
