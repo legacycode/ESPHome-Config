@@ -112,9 +112,6 @@ text_sensor:
 
   # Debug Text-Sensoren
   - platform: debug
-    device:
-      name: "${friendly_name} Geraeteinformationen"
-      entity_category: diagnostic
     reset_reason:
       name: "${friendly_name} Neustart Grund"
       entity_category: diagnostic
