@@ -17,7 +17,7 @@ packages:
     url: https://github.com/legacycode/ESPHome-Config.git
     file: common.yaml
     ref: main
-    refresh: 1d
+    refresh: 0s
 
 # Board-Konfiguration (Wemos D1 Mini)
 esp8266:

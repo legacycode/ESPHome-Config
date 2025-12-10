@@ -26,7 +26,7 @@ packages:
     url: https://github.com/legacycode/ESPHome-Config.git
     file: common.yaml
     ref: main
-    refresh: 1d
+    refresh: 0s
 
   # Gaszaehler Package (enthält common, board, gas-meter, localization)
   gas_meter:
@@ -38,4 +38,4 @@ packages:
       esphome/localization/de.yaml
       ]
     ref: main
-    refresh: 1d
+    refresh: 0s

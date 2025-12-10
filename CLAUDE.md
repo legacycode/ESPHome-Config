@@ -51,10 +51,12 @@ In `secrets.yaml` müssen folgende Werte definiert sein:
        url: https://github.com/legacycode/ESPHome-Config.git
        file: common.yaml
        ref: main
-       refresh: 1d
+       refresh: 0s  # Immer aktuellste Version beim Kompilieren laden
    ```
 3. Konfiguration validieren: `esphome config neues-geraet.yaml`
 4. Bei erfolgreichem Test committen
+
+**Hinweis:** `refresh: 0s` lädt die Remote-Packages bei jedem Kompilieren neu. Die ESP-Geräte aktualisieren sich **nicht automatisch** - du musst nach Änderungen manuell neu kompilieren und flashen.
 
 ### Vor jedem Commit
 
