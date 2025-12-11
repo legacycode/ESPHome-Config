@@ -28,9 +28,10 @@ external_components:
   - source: github://KinDR007/VictronMPPT-ESPHOME@main
 
 # UART-Konfiguration für Victron VE.Direct
+# Nur RX-Pin, da VE.Direct Text Protocol read-only ist
+# TX-Pin (D6) wird für Remote On/Off verwendet (siehe switch unten)
 uart:
   id: uart_0
-  tx_pin: D6  # Nicht verwendet! Die Kommunikation ist nur lesend
   rx_pin: D7
   baud_rate: 19200
   rx_buffer_size: 256
@@ -138,3 +139,15 @@ binary_sensor:
     relay_state:
       name: "${friendly_name} Relais Status"
       icon: "mdi:electric-switch"
+
+# Remote On/Off Switch
+# Steuert den RX-Pin des Victron SmartSolar
+# HIGH (3.3V) = Ladegeraet EIN
+# LOW (GND) = Ladegeraet AUS
+switch:
+  - platform: gpio
+    pin: D6  # GPIO12 - verbunden mit Victron RX
+    name: "${friendly_name} Remote On/Off"
+    icon: "mdi:power"
+    restore_mode: ALWAYS_ON  # Nach Neustart eingeschaltet
+    inverted: false  # HIGH = EIN, LOW = AUS
