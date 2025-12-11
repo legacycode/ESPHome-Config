@@ -16,7 +16,7 @@ packages:
   common:
     url: https://github.com/legacycode/ESPHome-Config.git
     file: common.yaml
-    ref: main
+    ref: smartsolar-reduce-sensors
     refresh: 0s
 
 # Board-Konfiguration (Wemos D1 Mini)
