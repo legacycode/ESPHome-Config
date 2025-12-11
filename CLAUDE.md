@@ -99,17 +99,17 @@ Die `common.yaml` enthält:
 ### Diagnostic-Sensoren (automatisch für alle Geräte)
 
 **Sensoren:**
-- WiFi Signal Stärke (dBm, update_interval: 60s)
 - Betriebszeit (Sekunden, update_interval: 60s)
 
 **Text-Sensoren:**
-- WiFi SSID, BSSID, IP Adresse, MAC Adresse
 - ESPHome Version
 
 **Binary-Sensoren:**
 - Status (Verbindungsstatus)
 
 **Wichtig:** Nach Hinzufügen neuer Sensoren zur `common.yaml` müssen Geräte in Home Assistant möglicherweise gelöscht und neu hinzugefügt werden, damit die Discovery korrekt funktioniert. Die Sensoren erscheinen dann in der Diagnostic-Sektion.
+
+**Branch `smartsolar-reduce-sensors`:** Experimenteller Branch mit minimal reduzierten Sensoren (ohne Debug- und WiFi-Info-Sensoren) zur Reduzierung der ESP8266-Last.
 
 ## Geräte
 
@@ -147,12 +147,18 @@ Gaszähler-Ausleser mit Reed-Kontakt auf Wemos D1 Mini:
   - Zählerstand-Offset konfigurierbar (Number)
   - Persistente Speicherung der Impulse
 
+**Wichtig:** Die Sensor-Konfiguration wird aus dem externen Repository `github://legacycode/ESPHome-Gas-Meter` geladen. Änderungen an Sensoren, Pins oder Funktionen müssen dort vorgenommen werden, nicht in dieser `gas-meter.yaml`. Diese Datei enthält nur die gerätespezifischen Substitutions (devicename, pulses_per_cubic_meter, etc.).
+
 ### smartsolar.yaml
 
 Victron SmartSolar MPPT Laderegler auf Wemos D1 Mini:
 
 - **Board:** ESP8266 (d1_mini)
-- **UART:** RX=D7 (GPIO13), TX=D6 (GPIO12), 19200 Baud
+- **UART:** RX=D7 (GPIO13), 19200 Baud (nur RX, da VE.Direct Text Protocol read-only ist)
+- **Remote On/Off:** D6 (GPIO12) steuert Victron RX-Pin für ferngesteuertes Ein-/Ausschalten
+  - HIGH (3.3V) = Gerät EIN
+  - LOW (GND) = Gerät AUS
+  - `restore_mode: ALWAYS_ON` - Gerät bleibt nach Neustart eingeschaltet
 - **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
 - **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartsolar-mppt-esp8266-example.yaml
 - **Sensoren (14):**
@@ -167,6 +173,8 @@ Victron SmartSolar MPPT Laderegler auf Wemos D1 Mini:
   - Firmware Version, Gerätetyp, Seriennummer
 - **Binary-Sensoren (2):**
   - Last Status, Relais Status
+- **Switch (1):**
+  - Remote On/Off (steuert Gerät über Victron RX-Pin)
 
 ### smartshunt.yaml
 
@@ -198,6 +206,7 @@ Victron SmartShunt Batteriemonitor auf Wemos D1 Mini:
 ## Hinweise für Claude
 
 - Vor Commits IMMER `esphome config` ausführen
+- **CLAUDE.md vor jedem Push aktualisieren!**
 - Keine Secrets in YAML-Dateien hardcoden
 - Für Validierung Test-Secrets verwenden (secrets.yaml wird nicht committed)
 - Keine Co-Authorship in Git-Commits
