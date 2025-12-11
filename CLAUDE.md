@@ -162,12 +162,12 @@ Victron SmartSolar MPPT Laderegler auf Wemos D1 Mini:
 - **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
 - **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartsolar-mppt-esp8266-example.yaml
 - **Sensoren (14):**
-  - Panel Spannung/Leistung
-  - Batterie Spannung/Strom
-  - Ertrag (Gesamt, Heute, Gestern) in kWh
-  - Max Leistung (Heute, Gestern)
+  - Panel Spannung/Leistung (mit device_class: voltage/power, state_class: measurement)
+  - Batterie Spannung/Strom (mit device_class: voltage/current, state_class: measurement)
+  - Ertrag (Gesamt, Heute, Gestern) in kWh (mit device_class: energy, state_class: total_increasing)
+  - Max Leistung (Heute, Gestern) (mit device_class: power, state_class: measurement)
   - Tag Nummer, Lademodus ID, Fehlercode, Tracking Modus ID
-  - Last Strom
+  - Last Strom (mit device_class: current, state_class: measurement)
 - **Text-Sensoren (6):**
   - Lademodus, Tracking Modus, Fehler
   - Firmware Version, Gerätetyp, Seriennummer
@@ -185,13 +185,14 @@ Victron SmartShunt Batteriemonitor auf Wemos D1 Mini:
 - **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
 - **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartshunt-esp8266-example.yaml
 - **Sensoren (~15, reduziert):**
-  - Batterie Spannung/Strom/Ladezustand
-  - Hilfsbatterie Spannung
-  - Momentanleistung, Verbrauchte Ah, Restlaufzeit
+  - Batterie Spannung/Strom/Ladezustand (mit device_class: voltage/current/battery, state_class: measurement)
+  - Hilfsbatterie Spannung (mit device_class: voltage, state_class: measurement)
+  - Momentanleistung (mit device_class: power, state_class: measurement)
+  - Verbrauchte Ah, Restlaufzeit
   - Entladungstiefen (Tiefste, Letzte, Durchschnittlich)
-  - Min/Max Batterie Spannung
-  - Min/Max Hilfsbatterie Spannung
-  - Energie geladen/entladen in kWh
+  - Min/Max Batterie Spannung (mit device_class: voltage, state_class: measurement)
+  - Min/Max Hilfsbatterie Spannung (mit device_class: voltage, state_class: measurement)
+  - Energie geladen/entladen in kWh (mit device_class: energy, state_class: total_increasing)
   - DC Monitor Modus ID
   - Letzte Vollladung, Kumulierte Ah entnommen
 - **Text-Sensoren (3):**
