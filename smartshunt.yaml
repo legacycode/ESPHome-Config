@@ -16,7 +16,7 @@ packages:
   common:
     url: https://github.com/legacycode/ESPHome-Config.git
     file: common.yaml
-    ref: main
+    ref: smartsolar-reduce-sensors
     refresh: 0s
 
 # Board-Konfiguration (Wemos D1 Mini)
@@ -28,9 +28,9 @@ external_components:
   - source: github://KinDR007/VictronMPPT-ESPHOME@main
 
 # UART-Konfiguration für Victron VE.Direct
+# Nur RX-Pin, da VE.Direct Text Protocol read-only ist
 uart:
   id: uart_0
-  tx_pin: D6  # Nicht verwendet! Die Kommunikation ist nur lesend
   rx_pin: D7
   baud_rate: 19200
   rx_buffer_size: 256

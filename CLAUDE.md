@@ -181,27 +181,25 @@ Victron SmartSolar MPPT Laderegler auf Wemos D1 Mini:
 Victron SmartShunt Batteriemonitor auf Wemos D1 Mini:
 
 - **Board:** ESP8266 (d1_mini)
-- **UART:** RX=D7 (GPIO13), TX=D6 (GPIO12), 19200 Baud
+- **UART:** RX=D7 (GPIO13), 19200 Baud (nur RX, da VE.Direct Text Protocol read-only ist)
 - **Externe Komponente:** github://KinDR007/VictronMPPT-ESPHOME@main
 - **Beispielkonfiguration:** https://github.com/KinDR007/VictronMPPT-ESPHOME/blob/main/smartshunt-esp8266-example.yaml
-- **Sensoren (29):**
-  - Batterie Spannung/Strom/Temperatur/Ladezustand
-  - Hilfsbatterie Spannung (Min/Max)
-  - Batteriebank Mittelspannung/Abweichung
+- **Sensoren (~15, reduziert):**
+  - Batterie Spannung/Strom/Ladezustand
+  - Hilfsbatterie Spannung
   - Momentanleistung, Verbrauchte Ah, Restlaufzeit
   - Entladungstiefen (Tiefste, Letzte, Durchschnittlich)
-  - Ladezyklen, Vollentladungen
+  - Min/Max Batterie Spannung
+  - Min/Max Hilfsbatterie Spannung
   - Energie geladen/entladen in kWh
-  - Alarm-Zähler (Über-/Unterspannung)
-- **Text-Sensoren (7):**
-  - Alarm Bedingung/Grund
-  - Modellbeschreibung, Firmware Version, Gerätetyp, Seriennummer
-  - DC Monitor Modus
-- **Binary-Sensoren (1):**
-  - Relais Status
+  - DC Monitor Modus ID
+  - Letzte Vollladung, Kumulierte Ah entnommen
+- **Text-Sensoren (3):**
+  - Modellbeschreibung, Firmware Version, DC Monitor Modus
 - **Energy Dashboard:**
   - `amount_of_charged_energy` → Energie IN die Batterie (kWh)
   - `amount_of_discharged_energy` → Energie AUS der Batterie (kWh)
+- **Hinweis:** Kein Remote On/Off Switch (im Gegensatz zum SmartSolar)
 
 ## Hinweise für Claude
 
