@@ -1,7 +1,7 @@
 # ESP32-S3 Bluetooth Proxy (Garage)
 
 substitutions:
-  devicename: "bt-proxy-0fe080"
+  devicename: "bt-proxy-garage"
   friendly_name: "BT Proxy Garage"
   device_comment: "ESP32-S3 Bluetooth Proxy"
 

@@ -15,7 +15,7 @@ Dieses Repository enthält ESPHome-Konfigurationsdateien für verschiedene Smart
 ├── gas-meter.yaml                       # Gaszähler-Konfiguration (Reed-Kontakt)
 ├── smartsolar.yaml                      # Victron SmartSolar MPPT Laderegler
 ├── smartshunt.yaml                      # Victron SmartShunt Batteriemonitor
-├── esp32-bluetooth-proxy-0fe080.yaml   # Bluetooth Proxy (Garage)
+├── esp32-bluetooth-proxy-garage.yaml    # Bluetooth Proxy (Garage)
 └── .gitignore                          # Schützt secrets.yaml vor versehentlichem Commit
 ```
 
@@ -206,7 +206,7 @@ Victron SmartShunt Batteriemonitor auf M5Stack AtomS3 Lite:
   - `amount_of_discharged_energy` → Energie AUS der Batterie (kWh)
 - **Hinweis:** Kein Remote On/Off Switch (im Gegensatz zum SmartSolar)
 
-### esp32-bluetooth-proxy-0fe080.yaml
+### esp32-bluetooth-proxy-garage.yaml
 
 ESP32-S3 Bluetooth Proxy (Garage):
 
@@ -217,7 +217,7 @@ ESP32-S3 Bluetooth Proxy (Garage):
   - Common: github://legacycode/ESPHome-Config (WiFi, API, OTA, MQTT, Web Server, etc.)
 - **Standort:** Garage
 - **Friendly Name:** "BT Proxy Garage"
-- **Device Name:** bt-proxy-0fe080
+- **Device Name:** bt-proxy-garage
 - **Bluetooth Features:**
   - Bluetooth Proxy mit 3 aktiven Verbindungen
   - Scan Duration: 300s
