@@ -210,7 +210,8 @@ Victron SmartShunt Batteriemonitor auf M5Stack AtomS3 Lite:
 
 ESP32-S3 Bluetooth Proxy (Garage):
 
-- **Board:** ESP32-S3 Generic
+- **Board:** ESP32-S3 (M5Stack AtomS3 Lite)
+- **Board-Konfiguration:** m5stack-atoms3, variant: esp32s3, framework: arduino
 - **Package:** github://esphome/bluetooth-proxies/esp32-generic/esp32-generic-s3.yaml@main
 - **Standort:** Garage
 - **Friendly Name:** "BT Proxy Garage"

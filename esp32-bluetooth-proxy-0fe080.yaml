@@ -13,6 +13,13 @@ esphome:
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
 
+# Board-Konfiguration (M5Stack AtomS3)
+esp32:
+  board: m5stack-atoms3
+  variant: esp32s3
+  framework:
+    type: arduino
+
 # API mit gemeinsamem Encryption Key
 api:
   encryption:
