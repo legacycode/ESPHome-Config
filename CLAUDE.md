@@ -16,6 +16,7 @@ Dieses Repository enthält ESPHome-Konfigurationsdateien für verschiedene Smart
 ├── smartsolar.yaml                      # Victron SmartSolar MPPT Laderegler
 ├── smartshunt.yaml                      # Victron SmartShunt Batteriemonitor
 ├── esp32-bluetooth-proxy-garage.yaml    # Bluetooth Proxy (Garage)
+├── esp32-bluetooth-proxy-buero.yaml     # Bluetooth Proxy (Büro)
 └── .gitignore                          # Schützt secrets.yaml vor versehentlichem Commit
 ```
 
@@ -225,7 +226,33 @@ ESP32-S3 Bluetooth Proxy (Garage):
   - Active Scanning
   - Continuous Scanning
 - **Common Features:**
-  - MQTT-Integration
+  - MQTT-Integration (Topic: esphome/bt-proxy-garage)
+  - Web-Server (Port 80)
+  - Captive Portal
+  - Zeit-Synchronisation (Home Assistant)
+  - Diagnostic-Sensoren (WiFi Signal, Betriebszeit, WiFi Info, Version, Reset Reason, Status)
+  - Restart-Button
+
+### esp32-bluetooth-proxy-buero.yaml
+
+ESP32-S3 Bluetooth Proxy (Büro):
+
+- **Board:** ESP32-S3 (M5Stack AtomS3 Lite)
+- **Board-Konfiguration:** m5stack-atoms3, variant: esp32s3, framework: arduino
+- **Packages:**
+  - Bluetooth Proxy: github://esphome/bluetooth-proxies/esp32-generic/esp32-generic-s3.yaml@main
+  - Common: github://legacycode/ESPHome-Config (WiFi, API, OTA, MQTT, Web Server, etc.)
+- **Standort:** Büro
+- **Friendly Name:** "BT Proxy Buero"
+- **Device Name:** bt-proxy-buero
+- **Bluetooth Features:**
+  - Bluetooth Proxy mit 3 aktiven Verbindungen
+  - Scan Duration: 300s
+  - Scan Interval: 320ms, Window: 30ms
+  - Active Scanning
+  - Continuous Scanning
+- **Common Features:**
+  - MQTT-Integration (Topic: esphome/bt-proxy-buero)
   - Web-Server (Port 80)
   - Captive Portal
   - Zeit-Synchronisation (Home Assistant)
