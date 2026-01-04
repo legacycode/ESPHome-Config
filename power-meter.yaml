@@ -11,7 +11,7 @@ substitutions:
 # Remote extensions (API encryption, OTA, MQTT, Web Server, Captive Portal)
 packages:
   common:
-    url: https://github.com/legacycode/ESPHome-Config.git
+    url: https://github.com/legacycode-esphome/ESPHome-Config.git
     file: common.yaml
     ref: main
     refresh: 0s

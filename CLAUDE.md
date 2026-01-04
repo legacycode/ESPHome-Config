@@ -50,7 +50,7 @@ In `secrets.yaml` müssen folgende Werte definiert sein:
    ```yaml
    packages:
      common:
-       url: https://github.com/legacycode/ESPHome-Config.git
+       url: https://github.com/legacycode-esphome/ESPHome-Config.git
        file: common.yaml
        ref: main
        refresh: 0s  # Immer aktuellste Version beim Kompilieren laden

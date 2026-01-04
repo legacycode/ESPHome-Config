@@ -23,14 +23,14 @@ substitutions:
 packages:
   # Remote Extensions (API-Verschlüsselung, OTA, MQTT, Web Server, Captive Portal)
   common:
-    url: https://github.com/legacycode/ESPHome-Config.git
+    url: https://github.com/legacycode-esphome/ESPHome-Config.git
     file: common.yaml
     ref: main
     refresh: 0s
 
   # Gaszaehler Package (enthält common, board, gas-meter, localization)
   gas_meter:
-    url: https://github.com/legacycode/ESPHome-Gas-Meter
+    url: https://github.com/legacycode-esphome/ESPHome-Gas-Meter.git
     files: [
       esphome/common/packages.yaml,
       esphome/common/boards/esp8266-d1-mini.yaml,
